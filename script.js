@@ -1,5 +1,3 @@
-//challenge 1//
-
 function formatdate(date) {
 
 let hours=date.getHours();
@@ -32,7 +30,6 @@ let dateElement=document.querySelector("#date");
 let currentTime=new Date();
 dateElement.innerHTML=formatdate(currentTime);
 
-//challenge 2//
 
 function displayWeatherCondition(response) {
   console.log(response.data.name);
@@ -55,26 +52,6 @@ function handleSubmit(event) {
   searchCity(city);
 }
 
-//test//
-
-function searchLocation(position) {
-  let apiKey = "64469ac67e6dc941feb5b50915a18dc7";
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayWeatherCondition);
-}
-
-function getCurrentPosition(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(searchLocation);
-}
-
-let currentLocationButton = document.querySelector("#current-location-button");
-currentLocationButton.addEventListener("click", getCurrentPosition);
-
-//test//
-
 
   
 let weathersearchform = document.querySelector("#search-form");
@@ -84,8 +61,6 @@ weathersearchform.addEventListener("submit", handleSubmit);
 
 searchCity("Charlotte");
 
-
-//challenge 3//
 
 
 function convertToCelsius(event) {
