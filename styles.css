@@ -75,6 +75,13 @@ a:hover {
     cursor:pointer;  
 }
 
+.weather-forecast {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
 footer {
     text-align: center;
 }
