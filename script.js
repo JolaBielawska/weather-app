@@ -42,12 +42,12 @@ function displayWeatherCondition(response) {
   let iconElement=document.querySelector("#icon");
   iconElement.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   iconElement.setAttribute("alt", response.data.weather[0].description);
-  getForecast(response.data.coord);
+
 
 }
 
 function searchCity(city) {
-    let apiKey = "64469ac67e6dc941feb5b50915a18dc7";
+    let apiKey = "43b2fa3924e8439ae02236bb031f83ab";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayWeatherCondition);
 }
@@ -58,45 +58,20 @@ function handleSubmit(event) {
   searchCity(city);
 }
 
-
   
 let weathersearchform = document.querySelector("#search-form");
 weathersearchform.addEventListener("submit", handleSubmit);
 
 
-
-searchCity("Charlotte");
-
 let forecast=document.querySelector("#forecast");
 
 
-  function displayForecast () {
-    let forecast = document.querySelector("#forecast");
-  
+ function formatDay(timestamp) {
+   let date = new Date(timestamp * 1000);
+   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  let forecastHtml = "";
-
-  days.forEach(function(day) {
-    forecast.innerHTML =
-      forecastHtml +
-      `
-  <div class="weather-forecast-day">
-    <div class="weather-forecast-date">Tue</div>
-    <div class="weather-forecast-icon">🌤️</div>
-    <div class="weather-forecast-temperatures">
-      <div class="weather-forecast-temperature">
-        <strong>15º</strong>
-      </div>
-      <div class="weather-forecast-temperature">9º</div>
-    </div>
-  </div> `;
-  });
-
-
-  let forecastElement = document.querySelector("#forecast");
-  forecastElement.innerHTML = forecastHtml;
-}
+   return days[date.getDay()];
+ }
 
 function convertToFahrenheit(event) {
   event.preventDefault();
@@ -120,3 +95,6 @@ fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
 let celsiusLink = document.querySelector("#celsiuslink");
 celsiusLink.addEventListener("click", convertToCelsius);
+
+searchCity("Charlotte");
+
